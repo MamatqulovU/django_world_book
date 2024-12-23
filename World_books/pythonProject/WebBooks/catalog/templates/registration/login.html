@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+    <p>Sizning foydalanuvchi nomi va parolingiz mos kelmadi.
+            Iltimos, qayta urinib ko`ring</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>Siz ushbu sahifaga kirish huquqiga ega emassiz. Tizimga
+                boshqa parametrlar bilan kiring</p>
+    {% else %}
+        <p>Ushbu sahifani ko`rish uchun tiizmga kiring.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+    </table>
+    <input type="submit" value="Kirish" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{# Siz o`zingizning URLconfda password_reset ni sozlagan siz deb taxmin qilnmoqda #}
+<p><a href="{% url 'password_reset' %}">Parolni unutdingizmi?</a></p>
+
+{% endblock %}

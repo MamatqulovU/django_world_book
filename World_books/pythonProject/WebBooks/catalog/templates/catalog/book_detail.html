@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Kitob nomi: {{ book.title }}</h1>
+    <p><strong>Janr: </strong>{{ book.genre }}</p>
+    <p><strong>Annotatsiya: </strong>{{ book.summary }}</p>
+    <p><strong>ISBN: </strong>{{ book.isbn }}</p>
+    <p><strong>Til: </strong>{{ book.language }}</p>
+        {% for author in book.author.all %}
+            <p><strong>Muallif: </strong>
+                <a href="">{{ author.first_name }}
+                           {{ author.last_name }}</a></p>
+        {% endfor %}
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Kitobning MBdagi nusxalari miqdori</h4>
+    {% for copy in book.bookinstance_set.all %}
+    <hr><p class="{% if copy.status == 1 %} text-success
+                {% elif copy.status == 2 %} text-danger
+                {% else %} text-warning
+                {% endif %}"> {{ copy.get_status_display }} </p>
+    <p><strong>Nashriyot: </strong>{{ copy.imprint }}</p>
+    <p class="text-muted"><strong>Inventar raqami: </strong>{{ copy.id }}</p>
+    <p><strong>Kitob nusxasining MBdagi statusi: </strong>{{ copy.status }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
+<p><strong>Muallif:</strong><a href="">{{ author.first_name }}
+{{ author.last_name }}</a></p>

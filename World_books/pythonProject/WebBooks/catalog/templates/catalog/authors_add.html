@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h3>MBdagi mualliflar ro`yxati</h3>
+  <table>
+    <thead>
+      <th>Id</th><th>----Ism----</th><th>Familiya</th><th></th>
+    </thead>
+    {% if author %}
+      {% for author in author.all %}
+        <tr>
+          <td>{{author.id}}</td>
+          <td>{{author.first_name}}</td>
+          <td>{{author.last_name}}</td>
+          <td><a href="/edit1/{{author.id}}">O`zgartirish</a>,
+              <a href="/delete/{{author.id}}">O`chirish</a></td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <p>Ma`lumotlar bazasida mualliflar mavjud emas</p>
+    {% endif %}
+  </table>
+
+<h3>MBga kitob muallifini qo`shish</h3>
+<form method="POST" action="/create/">
+  {% csrf_token %}
+  <table>
+    {{ form }}
+  </table>
+  <input type="submit" value="Saqlash">
+</form>
+{% endblock %}

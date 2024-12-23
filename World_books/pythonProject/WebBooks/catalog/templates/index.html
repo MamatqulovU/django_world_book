@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Asosiy sahifa</h1>
+    <p><em>Kitoblar dunyosi</em>ga xush kelibsiz, Bu Djangoda tayyorlangan,
+        juda ham oddiy sayt. PyCharmdan foydalangan holda, Pythonda
+        tayyorlangan</p>
+
+<h2>Dinamik kontent</h2>
+    <p>Kitoblar dunyosi saytining ma`lumotlar bazasida
+        quyidagicha miqdordagi yozuvlar mavjud: </p>
+    <ul>
+        <li><strong>Kitoblar soni: </strong>{{ num_books }}</li>
+        <li><strong>Kitoblar nusxalari soni:</strong> {{ num_instances }} </li>
+        <li><strong>Buyurtmadagi kitoblar nusxalari soni:
+            </strong> {{ num_instances_available }}</li>
+        <li><strong>Kitoblar mualliflari soni:
+        </strong> {{ num_authors }}</li>
+    </ul>
+    <p>Ushbu sahifaga kirishlar soni - {{ num_visits }}</p>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Kitobni o`chirish</h1>
+<p>Chindan {{ book }} kitobini o`chirmoqchimisiz?</p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" action="" value="Ha, o`chiramiz"/>
+</form>
+
+{% endblock %}
